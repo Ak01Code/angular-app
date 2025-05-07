@@ -1,0 +1,58 @@
+<mat-dialog-content>
+  <form #eventForm="ngForm" (ngSubmit)="submit(eventForm)">
+    <input type="file" (change)="onFileSelected($event)" /><br /><br />
+
+    <mat-form-field style="width: 100%">
+      <mat-label>Event Name</mat-label>
+      <input
+        matInput
+        name="eventName"
+        [(ngModel)]="formData.eventName"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%">
+      <mat-label>Event Date</mat-label>
+      <input
+        matInput
+        type="date"
+        name="eventDate"
+        [(ngModel)]="formData.eventDate"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%">
+      <mat-label>Category</mat-label>
+      <mat-select
+        name="eventCategory"
+        [(ngModel)]="formData.eventCategory"
+        required
+      >
+        <mat-option class="mat-select-panel" value="singingConcert"
+          >Singing Concert</mat-option
+        >
+        <mat-option class="mat-select-panel" value="dancePerformance"
+          >Dance Performance</mat-option
+        >
+        <mat-option class="mat-select-panel" value="standupComedy"
+          >Standup Comedy</mat-option
+        >
+        <mat-option class="mat-select-panel" value="movieShow"
+          >Movie Show</mat-option
+        >
+        <mat-option class="mat-select-panel" value="magicShow"
+          >Magic Show</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="submit(eventForm)">
+    Create Event
+  </button>
+</mat-dialog-actions>

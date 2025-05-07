@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  padding-inline: 2rem;
+  padding-inline: 1.5rem;
   background-color: #fff1ea;
-  /* min-height: 100vh; */
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
