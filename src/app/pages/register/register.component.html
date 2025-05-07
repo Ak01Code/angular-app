@@ -1,0 +1,45 @@
+<div class="register-container">
+  <h1>Register in to <span class="highlight">EvoEvent</span></h1>
+
+  <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="register-form">
+    <label class="form-label">Name</label>
+    <input
+      type="text"
+      name="name"
+      [(ngModel)]="registerData.name"
+      placeholder="Your full name"
+      required
+    />
+
+    <label class="form-label">Email</label>
+    <input
+      type="email"
+      name="email"
+      [(ngModel)]="registerData.email"
+      placeholder="you@example.com"
+      required
+    />
+
+    <label class="form-label">Password</label>
+    <input
+      type="password"
+      name="password"
+      [(ngModel)]="registerData.password"
+      required
+    />
+
+    <label class="form-label">Confirm Password</label>
+    <input
+      type="password"
+      name="confirmPassword"
+      [(ngModel)]="registerData.confirmPassword"
+      required
+    />
+
+    <button type="submit" [disabled]="!registerForm.valid">Register</button>
+
+    <div class="form-footer">
+      <a href="/login">For LogIn ?</a>
+    </div>
+  </form>
+</div>

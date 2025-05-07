@@ -1,0 +1,76 @@
+.login-container {
+  max-width: 500px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.login-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.highlight {
+  color: orange;
+  font-style: italic;
+}
+.form-label {
+  text-align: left;
+}
+
+.subtext {
+  font-size: 1.1rem;
+  color: #444;
+  /* margin-bottom: 30px; */
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.login-form button {
+  background-color: #ff5c00;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.login-form button:disabled {
+  background-color: #ffa366;
+  cursor: not-allowed;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.form-footer a {
+  color: black;
+  text-decoration: underline;
+}
+
+.form-footer .signin {
+  color: #5b4dff;
+}

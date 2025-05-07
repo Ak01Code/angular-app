@@ -1,0 +1,59 @@
+.register-container {
+  max-width: 500px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.register-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.form-label {
+  text-align: left;
+}
+
+.highlight {
+  color: orange;
+  font-style: italic;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 20px;
+}
+
+.register-form input[type="text"],
+.register-form input[type="email"],
+.register-form input[type="password"] {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.register-form button {
+  background-color: #ff5c00;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.register-form button:disabled {
+  background-color: #ffa366;
+  cursor: not-allowed;
+}
+
+.form-footer {
+  margin-top: 15px;
+}
+
+.form-footer a {
+  color: #5b4dff;
+  font-weight: 500;
+}

@@ -1,0 +1,49 @@
+<div *ngIf="events.length > 0; else noEvents" class="event-grid">
+  <div *ngFor="let event of events" class="event-card">
+    <img [src]="event.eventImage" alt="Event image" class="event-image" />
+    <div class="event-content">
+      <h3 class="event-title">{{ event.eventName }}</h3>
+      <div class="event-meta">
+        <span class="badge">{{ event.eventCategory }}</span>
+        <span class="date">
+          <i class="fa fa-calendar"></i>
+          {{ event.eventDate | date : "dd, MMMM yyyy" }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="events.length > 0; else null" class="pagination-controls">
+  <div>
+    <button
+      (click)="prevPage()"
+      [disabled]="currentPage == 1"
+      class="pagination-button"
+    >
+      Previous
+    </button>
+  </div>
+  <div class="button-group">
+    <button
+      *ngFor="let page of pages"
+      [class.active]="page == currentPage"
+      (click)="goToPage(page)"
+      class="pagination-button"
+    >
+      {{ page }}
+    </button>
+  </div>
+  <div>
+    <button
+      (click)="nextPage()"
+      [disabled]="currentPage == totalPages"
+      class="pagination-button"
+    >
+      Next
+    </button>
+  </div>
+</div>
+
+<ng-template #noEvents>
+  <p>No events found.</p>
+</ng-template>
