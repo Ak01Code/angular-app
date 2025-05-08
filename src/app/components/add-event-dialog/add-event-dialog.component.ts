@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { EventService } from '../../services/event.service';
+import { ToastrService } from 'ngx-toastr';
 
 interface EditEventType {
   creator: string;
@@ -44,15 +45,18 @@ export class AddEventDialogComponent {
   };
   selectedFile: File | string | null = null;
   imagePreviewUrl: string | null = null;
+  is_edit: boolean = false;
 
   constructor(
     private dialogRef: MatDialogRef<AddEventDialogComponent>,
     private eventService: EventService,
+    private toastr: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: EditEventType
   ) {}
 
   ngOnInit() {
     if (this.data) {
+      this.is_edit = true;
       this.formData = {
         eventName: this.data.eventName || '',
         eventDate: this.data.eventDate || '',
@@ -91,15 +95,27 @@ export class AddEventDialogComponent {
       formDataToSend.append('eventImage', this.selectedFile);
     }
 
-    if (this.data) {
+    if (this.is_edit) {
       this.eventService.updateEvent(formDataToSend, this.data?._id).subscribe({
-        next: () => this.dialogRef.close(true),
-        error: (err) => console.log('update event error', err),
+        next: () => {
+          this.dialogRef.close(true);
+          this.toastr.success('Update Event Successfull', 'Success');
+        },
+        error: (err) => {
+          console.log('update event error', err);
+          this.toastr.error(err?.error?.message, 'Error');
+        },
       });
     } else {
       this.eventService.createEvent(formDataToSend).subscribe({
-        next: () => this.dialogRef.close(true),
-        error: (err) => console.error('Create event error:', err),
+        next: () => {
+          this.dialogRef.close(true);
+          this.toastr.success('Create Event Successfull', 'Success');
+        },
+        error: (err) => {
+          this.toastr.error(err?.error?.message, 'Error');
+          console.error('Create event error:', err);
+        },
       });
     }
   }

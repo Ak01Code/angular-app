@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddEventDialogComponent } from '../../components/add-event-dialog/add-event-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
+import { ToastrService } from 'ngx-toastr';
 
 interface FilterType {
   search: string;
@@ -23,7 +24,11 @@ export class EventComponent implements OnInit {
   totalPages: number = 0;
   pages: number[] = [];
   filter: FilterType = { search: '', category: '' };
-  constructor(private eventService: EventService, private dialog: MatDialog) {}
+  constructor(
+    private eventService: EventService,
+    private dialog: MatDialog,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.fetchEvents(this.currentPage, this.filter);
@@ -39,6 +44,7 @@ export class EventComponent implements OnInit {
       },
       error: (err) => {
         console.log('err', err);
+        this.toastr.error(err?.message, 'Error');
       },
     });
   }
@@ -94,10 +100,12 @@ export class EventComponent implements OnInit {
     this.eventService.deleteEvent(id).subscribe({
       next: (res) => {
         if (res) {
+          this.toastr.success('Delete Event Successfull', 'Success');
           this.fetchEvents(this.currentPage, this.filter);
         }
       },
       error: (err) => {
+        this.toastr.error(err?.error?.message, 'Error');
         console.log('delete error', err);
       },
     });

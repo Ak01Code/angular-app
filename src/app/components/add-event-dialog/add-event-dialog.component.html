@@ -52,9 +52,9 @@
   </form>
 </mat-dialog-content>
 
-<mat-dialog-actions align="end">
+<mat-dialog-actions>
   <button mat-button (click)="close()">Cancel</button>
   <button mat-flat-button color="primary" (click)="submit(eventForm)">
-    Create Event
+    {{ is_edit ? "Update Event" : "Create Event" }}
   </button>
 </mat-dialog-actions>
