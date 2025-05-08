@@ -1,7 +1,15 @@
+.login-page {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+}
 .login-container {
   max-width: 450px;
-  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
+  height: 100%;
 }
 
 .login-container h1 {
@@ -20,7 +28,6 @@
 .subtext {
   font-size: 1.1rem;
   color: #444;
-  /* margin-bottom: 30px; */
 }
 
 .login-form {

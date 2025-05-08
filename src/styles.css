@@ -1,8 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  padding-inline: 1.5rem;
+  padding: 0rem 1.5rem;
   background-color: #fff1ea;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --primary-color: #ff6600;
+  --accent-color: #0066ff;
+  --delete-color: #ff3333;
+  --text-muted: #666;
+  --secondary-color: #fff1ea;
+}

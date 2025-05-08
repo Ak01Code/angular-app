@@ -8,7 +8,7 @@
       <input
         type="text"
         placeholder="Search here..."
-        [(ngModel)]="search"
+        [(ngModel)]="filter.search"
         (ngModelChange)="onSearchChange()"
         class="search-input"
       />
@@ -26,16 +26,21 @@
         <p>View and manage every events of the future.</p>
       </div>
       <div class="actions-area">
-        <div class="filter-dropdown">
-          <button class="filter-button">
-            <i class="fa fa-filter"></i> Filter
-            <i class="fa fa-chevron-down"></i>
-          </button>
-        </div>
-        <div class="view-toggle">
-          <button class="view-button">
-            <i class="fa fa-th-list"></i> List View
-          </button>
+        <div class="select-wrapper">
+          <i class="fa fa-filter select-icon"></i>
+          <select
+            [(ngModel)]="filter.category"
+            (ngModelChange)="onCategoryChange($event)"
+            class="styled-select"
+          >
+            <option value="" disabled selected>Filter</option>
+            <option value="">All</option>
+            <option value="singingConcert">Singing Concert</option>
+            <option value="dancePerformance">Dance Performance</option>
+            <option value="standupComedy">Standup Comedy</option>
+            <option value="movieShow">Movie Show</option>
+            <option value="magicShow">Magic Show</option>
+          </select>
         </div>
         <button class="add-button" (click)="openAddEventDialog(null)">
           <i class="fa fa-plus"></i> Add New Event
@@ -77,39 +82,38 @@
       </div>
     </div>
 
-    <div *ngIf="events.length > 0; else null" class="pagination-controls">
-      <div>
-        <button
-          (click)="prevPage()"
-          [disabled]="currentPage == 1"
-          class="pagination-button"
-        >
-          Previous
-        </button>
-      </div>
-      <div class="button-group">
-        <button
-          *ngFor="let page of pages"
-          [class.active]="page == currentPage"
-          (click)="goToPage(page)"
-          class="pagination-button"
-        >
-          {{ page }}
-        </button>
-      </div>
-      <div>
-        <button
-          (click)="nextPage()"
-          [disabled]="currentPage == totalPages"
-          class="pagination-button"
-        >
-          Next
-        </button>
-      </div>
-    </div>
-
     <ng-template #noEvents>
       <p>No events found.</p>
     </ng-template>
+  </div>
+  <div *ngIf="events.length > 0; else null" class="pagination-controls">
+    <div>
+      <button
+        (click)="prevPage()"
+        [disabled]="currentPage == 1"
+        class="pagination-button"
+      >
+        Previous
+      </button>
+    </div>
+    <div class="button-group">
+      <button
+        *ngFor="let page of pages"
+        [class.active]="page == currentPage"
+        (click)="goToPage(page)"
+        class="pagination-button"
+      >
+        {{ page }}
+      </button>
+    </div>
+    <div>
+      <button
+        (click)="nextPage()"
+        [disabled]="currentPage == totalPages"
+        class="pagination-button"
+      >
+        Next
+      </button>
+    </div>
   </div>
 </div>

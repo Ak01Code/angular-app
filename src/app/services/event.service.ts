@@ -8,9 +8,10 @@ import { Observable } from 'rxjs';
 export class EventService {
   constructor(private http: HttpClient) {}
 
-  getEvent(page: number, search: string): Observable<any> {
+  getEvent(page: number, filter: any): Observable<any> {
     let url = `events?page=${page}&limit=9`;
-    if (search) url += `&search=${search}`;
+    if (filter?.search) url += `&search=${filter.search}`;
+    if (filter.category) url += `&category=${filter.category}`;
     return this.http.get(url);
   }
 

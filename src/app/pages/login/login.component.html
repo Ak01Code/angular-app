@@ -1,37 +1,39 @@
-<div class="login-container">
-  <h1>Login to <span class="highlight">EvoEvent</span></h1>
-  <p class="subtext">
-    Welcome to evento, please enter your login details below
-  </p>
+<div class="login-page">
+  <div class="login-container">
+    <h1>Login to <span class="highlight">EvoEvent</span></h1>
+    <p class="subtext">
+      Welcome to evento, please enter your login details below
+    </p>
 
-  <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
-    <label class="form-label">Email</label>
-    <input
-      type="email"
-      name="email"
-      [(ngModel)]="loginData.email"
-      placeholder="you@example.com"
-      required
-    />
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
+      <label class="form-label">Email</label>
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="loginData.email"
+        placeholder="you@example.com"
+        required
+      />
 
-    <label class="form-label">Password</label>
-    <input
-      type="password"
-      name="password"
-      [(ngModel)]="loginData.password"
-      required
-    />
+      <label class="form-label">Password</label>
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="loginData.password"
+        required
+      />
 
-    <div class="checkbox">
-      <input type="checkbox" id="terms" name="terms" />
-      <label for="terms">Accept terms and conditions</label>
-    </div>
+      <div class="checkbox">
+        <input type="checkbox" id="terms" name="terms" />
+        <label for="terms">Accept terms and conditions</label>
+      </div>
 
-    <button type="submit" [disabled]="!loginForm.valid">Log In</button>
+      <button type="submit" [disabled]="!loginForm.valid">Log In</button>
 
-    <div class="form-footer">
-      <a href="#">Forget the password ?</a>
-      <a href="/register" class="signin">Sing In ?</a>
-    </div>
-  </form>
+      <div class="form-footer">
+        <a href="#">Forget the password ?</a>
+        <a href="/register" class="signin">Sing In ?</a>
+      </div>
+    </form>
+  </div>
 </div>

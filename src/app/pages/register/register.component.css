@@ -1,6 +1,11 @@
+.register-page {
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
 .register-container {
   max-width: 500px;
-  margin: 50px auto;
   text-align: center;
 }
 
