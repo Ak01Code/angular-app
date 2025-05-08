@@ -17,4 +17,12 @@ export class EventService {
   createEvent(payload: FormData): Observable<any> {
     return this.http.post('events', payload);
   }
+
+  updateEvent(payload: FormData, id: string): Observable<any> {
+    return this.http.patch(`events/${id}`, payload);
+  }
+
+  deleteEvent(id: string): Observable<any> {
+    return this.http.delete(`events/${id}`);
+  }
 }

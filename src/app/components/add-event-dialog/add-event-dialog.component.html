@@ -1,7 +1,9 @@
 <mat-dialog-content>
   <form #eventForm="ngForm" (ngSubmit)="submit(eventForm)">
     <input type="file" (change)="onFileSelected($event)" /><br /><br />
-
+    <div *ngIf="imagePreviewUrl" style="margin-bottom: 1rem">
+      <img [src]="imagePreviewUrl" alt="Event Image" style="max-width: 100%" />
+    </div>
     <mat-form-field style="width: 100%">
       <mat-label>Event Name</mat-label>
       <input

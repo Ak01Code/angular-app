@@ -46,9 +46,10 @@ export class EventComponent implements OnInit {
     this.fetchEvents(this.currentPage, this.search);
   }
 
-  openAddEventDialog() {
+  openAddEventDialog(eventData: any) {
     const dialogRef = this.dialog.open(AddEventDialogComponent, {
       width: '500px',
+      data: eventData || null,
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
@@ -76,5 +77,18 @@ export class EventComponent implements OnInit {
     if (this.currentPage > 1) {
       this.fetchEvents(this.currentPage - 1, this.search);
     }
+  }
+
+  deleteEvent(id: string) {
+    this.eventService.deleteEvent(id).subscribe({
+      next: (res) => {
+        if (res) {
+          this.fetchEvents(this.currentPage, this.search);
+        }
+      },
+      error: (err) => {
+        console.log('delete error', err);
+      },
+    });
   }
 }

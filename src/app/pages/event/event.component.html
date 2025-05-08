@@ -37,7 +37,7 @@
             <i class="fa fa-th-list"></i> List View
           </button>
         </div>
-        <button class="add-button" (click)="openAddEventDialog()">
+        <button class="add-button" (click)="openAddEventDialog(null)">
           <i class="fa fa-plus"></i> Add New Event
         </button>
       </div>
@@ -52,10 +52,16 @@
           <div class="event-title-actions">
             <h3 class="event-title">{{ event.eventName }}</h3>
             <div class="event-actions">
-              <button class="action-button edit">
+              <button
+                class="action-button edit"
+                (click)="openAddEventDialog(event)"
+              >
                 <i class="fa fa-edit"></i>
               </button>
-              <button class="action-button delete">
+              <button
+                class="action-button delete"
+                (click)="deleteEvent(event._id)"
+              >
                 <i class="fa fa-trash"></i>
               </button>
             </div>
