@@ -6,6 +6,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddEventDialogComponent } from '../../components/add-event-dialog/add-event-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
 import { ToastrService } from 'ngx-toastr';
+import { debounceTime, Subject } from 'rxjs';
 
 interface FilterType {
   search: string;
@@ -24,6 +25,7 @@ export class EventComponent implements OnInit {
   totalPages: number = 0;
   pages: number[] = [];
   filter: FilterType = { search: '', category: '' };
+  private searchSubject = new Subject<string>();
   constructor(
     private eventService: EventService,
     private dialog: MatDialog,
@@ -32,6 +34,15 @@ export class EventComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchEvents(this.currentPage, this.filter);
+
+    this.searchSubject
+      .pipe(
+        debounceTime(400) // wait 400ms after typing stops
+      )
+      .subscribe((searchTerm: string) => {
+        this.filter.search = searchTerm;
+        this.fetchEvents(this.currentPage, this.filter);
+      });
   }
 
   fetchEvents(page: number, filter: FilterType) {
@@ -61,7 +72,7 @@ export class EventComponent implements OnInit {
 
   onSearchChange() {
     this.currentPage = 1;
-    this.fetchEvents(this.currentPage, this.filter);
+    this.searchSubject.next(this.filter.search);
   }
 
   openAddEventDialog(eventData: any) {
